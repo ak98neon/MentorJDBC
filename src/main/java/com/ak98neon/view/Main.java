@@ -25,6 +25,7 @@ public class Main {
 
     /**
      * Method createTable, Creates a table in a database.
+     *
      * @return Successful or not the table was created
      */
     public static boolean createTable() {
@@ -40,6 +41,7 @@ public class Main {
 
     /**
      * Inserts a new entry into the table.
+     *
      * @param student Whose student we insert
      */
     public static void insertStudent(Student student) {
@@ -57,6 +59,7 @@ public class Main {
 
     /**
      * We update the information about the already created student
+     *
      * @param studentOld old student object
      * @param studentNew new student object
      */
@@ -76,6 +79,7 @@ public class Main {
 
     /**
      * Removing student
+     *
      * @param student student object
      * @return Successfully deleted or not
      */
@@ -93,6 +97,7 @@ public class Main {
 
     /**
      * Choosing a student by name
+     *
      * @param name name of student
      * @return Student
      */
@@ -117,6 +122,7 @@ public class Main {
 
     /**
      * Select all students
+     *
      * @return List Student
      */
     private static List<Student> selectAllStudent() {
@@ -141,6 +147,7 @@ public class Main {
 
     /**
      * Drop table drom data base
+     *
      * @return Successful drop table or not
      */
     public static boolean dropTable() {
