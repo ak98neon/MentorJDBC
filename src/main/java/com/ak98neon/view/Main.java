@@ -97,10 +97,10 @@ public class Main {
      * @return Student
      */
     public static Student selectStudent(String name) {
-        try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.SELECT_STUDENT)) {
+        try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.SELECT_STUDENT);
+             ResultSet set = statement.executeQuery()) {
             Student student = new Student();
             statement.setString(1, name);
-            ResultSet set = statement.executeQuery();
             while (set.next()) {
                 student.setId(set.getInt("id"));
                 student.setName(set.getString("name"));
@@ -120,9 +120,9 @@ public class Main {
      * @return List Student
      */
     private static List<Student> selectAllStudent() {
-        try (PreparedStatement preparedStatement = DBWorker.getConnection().prepareStatement(Queries.SELECT_ALL_STUDENT)) {
+        try (PreparedStatement preparedStatement = DBWorker.getConnection().prepareStatement(Queries.SELECT_ALL_STUDENT);
+             ResultSet set = preparedStatement.executeQuery()) {
             List<Student> list = new ArrayList<>();
-            ResultSet set = preparedStatement.executeQuery();
             while (set.next()) {
                 int id = set.getInt("id");
                 String name = set.getString("name");
