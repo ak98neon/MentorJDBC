@@ -18,6 +18,8 @@ public class Main {
         Student student = new Student(1, "TestName", 20, 1, 100);
         createTable();
         insertStudent(student);
+        updateStudent(student, new Student("LOL", 20, 2, 2));
+        deleteStudent(student);
         selectAllStudent().forEach(System.out::println);
     }
 
@@ -28,7 +30,7 @@ public class Main {
     public static boolean createTable() {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.CREATE_TABLE)) {
             statement.executeUpdate();
-            System.out.println("Table " + "testTable" + " is created!");
+            System.out.println("Table " + "STUD" + " is created!");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,8 +57,8 @@ public class Main {
 
     /**
      * We update the information about the already created student
-     * @param studentOld
-     * @param studentNew
+     * @param studentOld old student object
+     * @param studentNew new student object
      */
     public static void updateStudent(Student studentOld, Student studentNew) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.UPDATE_STUDENT)) {
@@ -74,7 +76,7 @@ public class Main {
 
     /**
      * Removing student
-     * @param student
+     * @param student student object
      * @return Successfully deleted or not
      */
     public static boolean deleteStudent(Student student) {
@@ -91,7 +93,7 @@ public class Main {
 
     /**
      * Choosing a student by name
-     * @param name
+     * @param name name of student
      * @return Student
      */
     public static Student selectStudent(String name) {

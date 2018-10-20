@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class DBWorker {
     private static Connection connection = null;
-    private static final String URL = "jdbc:h2:~/test?useSSL=false&serverTimezone = UTC";
+    private static final String URL = "jdbc:h2:~/test";
     private static final String USER = "sa";
     private static final String PASS = "";
 
