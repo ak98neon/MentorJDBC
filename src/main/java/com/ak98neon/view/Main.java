@@ -3,6 +3,7 @@ package com.ak98neon.view;
 import com.ak98neon.controller.DBWorker;
 import com.ak98neon.controller.Queries;
 import com.ak98neon.model.Student;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Main class, where we contain all methods for job bd
  */
+@Slf4j
 public class Main {
     public static void main(String[] args) {
         Student student = new Student(1, "TestName", 20, 1, 100);
@@ -21,22 +23,19 @@ public class Main {
         updateStudent(student, new Student("LOL", 20, 2, 2));
         deleteStudent(student);
         selectAllStudent().forEach(System.out::println);
+        dropTable();
     }
 
     /**
      * Method createTable, Creates a table in a database.
-     *
-     * @return Successful or not the table was created
      */
-    public static boolean createTable() {
+    public static void createTable() {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.CREATE_TABLE)) {
             statement.executeUpdate();
-            System.out.println("Table " + "STUD" + " is created!");
-            return true;
+            log.info("table has been is created");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         }
-        return false;
     }
 
     /**
@@ -51,9 +50,9 @@ public class Main {
             statement.setInt(3, student.getCourse());
             statement.setDouble(4, student.getSalary());
             statement.executeUpdate();
-            System.out.println("Record is inserted into STUD table!");
+            log.info("Record is inserted into table!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         }
     }
 
@@ -63,7 +62,7 @@ public class Main {
      * @param studentOld old student object
      * @param studentNew new student object
      */
-    public static void updateStudent(Student studentOld, Student studentNew) {
+    private static void updateStudent(Student studentOld, Student studentNew) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.UPDATE_STUDENT)) {
             statement.setString(1, studentNew.getName());
             statement.setInt(2, studentNew.getAge());
@@ -71,9 +70,9 @@ public class Main {
             statement.setDouble(4, studentNew.getSalary());
             statement.setInt(5, studentOld.getId());
             statement.executeUpdate();
-            System.out.println("Record is updated to STUD table!");
+            log.info("Record is updated to STUD table!");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         }
     }
 
@@ -81,18 +80,15 @@ public class Main {
      * Removing student
      *
      * @param student student object
-     * @return Successfully deleted or not
      */
-    public static boolean deleteStudent(Student student) {
+    private static void deleteStudent(Student student) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.DELETE_STUDENT)) {
             statement.setString(1, student.getName());
             statement.executeUpdate();
-            System.out.println("Record is delete to STUD table");
-            return true;
+            log.info("Record is delete to STUD table");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         }
-        return false;
     }
 
     /**
@@ -116,12 +112,14 @@ public class Main {
             }
             return student;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         } finally {
             try {
-                set.close();
+                if (set != null) {
+                    set.close();
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.info(e.getSQLState());
             }
         }
         return null;
@@ -147,24 +145,20 @@ public class Main {
             }
             return list;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         }
-        return null;
+        return new ArrayList<>();
     }
 
     /**
      * Drop table drom data base
-     *
-     * @return Successful drop table or not
      */
-    public static boolean dropTable() {
+    private static void dropTable() {
         try (PreparedStatement preparedStatement = DBWorker.getConnection().prepareStatement(Queries.DROP_TABLE)) {
             preparedStatement.executeUpdate();
             System.out.println("Table drop");
-            return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.info(e.getSQLState());
         }
-        return false;
     }
 }
