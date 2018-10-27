@@ -34,7 +34,7 @@ public class Main {
             statement.executeUpdate();
             log.info("table has been is created");
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("Table is not created, error: {}", e.getSQLState());
         }
     }
 
@@ -52,7 +52,7 @@ public class Main {
             statement.executeUpdate();
             log.info("Record is inserted into table!");
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("Insert error: {}", e.getSQLState());
         }
     }
 
@@ -72,7 +72,7 @@ public class Main {
             statement.executeUpdate();
             log.info("Record is updated to STUD table!");
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("Update error: {}", e.getSQLState());
         }
     }
 
@@ -87,7 +87,7 @@ public class Main {
             statement.executeUpdate();
             log.info("Record is delete to STUD table");
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("Delete error: {}", e.getSQLState());
         }
     }
 
@@ -110,16 +110,17 @@ public class Main {
                 student.setCourse(set.getInt("course"));
                 student.setSalary(set.getInt("salary"));
             }
+            log.info("select is complete");
             return student;
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("Select error: {}", e.getSQLState());
         } finally {
             try {
                 if (set != null) {
                     set.close();
                 }
             } catch (SQLException e) {
-                log.info(e.getSQLState());
+                log.info("close result set, error: {}", e.getSQLState());
             }
         }
         return null;
@@ -145,7 +146,7 @@ public class Main {
             }
             return list;
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("select all error: {}", e.getSQLState());
         }
         return new ArrayList<>();
     }
@@ -156,9 +157,9 @@ public class Main {
     private static void dropTable() {
         try (PreparedStatement preparedStatement = DBWorker.getConnection().prepareStatement(Queries.DROP_TABLE)) {
             preparedStatement.executeUpdate();
-            System.out.println("Table drop");
+            log.info("Table is drop");
         } catch (SQLException e) {
-            log.info(e.getSQLState());
+            log.info("drop table error: {}", e.getSQLState());
         }
     }
 }
