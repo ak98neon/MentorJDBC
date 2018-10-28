@@ -16,6 +16,8 @@ public class WorkBase {
 
     /**
      * Method createTable, Creates a table in a database.
+     *
+     * @return true if successfully create table
      */
     public static boolean createTable() {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.CREATE_TABLE)) {
@@ -34,7 +36,7 @@ public class WorkBase {
      * Inserts a new entry into the table.
      *
      * @param student Whose student we insert
-     * @return true if successfully
+     * @return true if successfully insert student
      */
     public static boolean insertStudent(final Student student) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.INSERT_STUDENT)) {
@@ -56,17 +58,16 @@ public class WorkBase {
     /**
      * We update the information about the already created student
      *
-     * @param studentOld old student object
-     * @param studentNew new student object
-     * @return true if successfully
+     * @return true if successfully update record int data base
      */
-    public static boolean updateStudent(final Student studentOld, final Student studentNew) {
+    public static boolean updateStudent(final String name, final int age, final int course, final int salary,
+                                        final int id) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.UPDATE_STUDENT)) {
-            statement.setString(1, studentNew.getName());
-            statement.setInt(2, studentNew.getAge());
-            statement.setInt(3, studentNew.getCourse());
-            statement.setDouble(4, studentNew.getSalary());
-            statement.setInt(5, studentOld.getId());
+            statement.setString(1, name);
+            statement.setInt(2, age);
+            statement.setInt(3, course);
+            statement.setDouble(4, salary);
+            statement.setInt(5, id);
             final int resStatement = statement.executeUpdate();
             if (resStatement == 0) {
                 log.info("Record is updated to table!");
@@ -82,7 +83,7 @@ public class WorkBase {
      * Removing student
      *
      * @param student student object
-     * @return true if successfully
+     * @return true if successfully delete
      */
     public static boolean deleteStudent(final Student student) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.DELETE_STUDENT)) {
@@ -144,6 +145,7 @@ public class WorkBase {
                     list.add(stud);
                 }
             }
+            log.info("select all record student");
             return list;
         } catch (SQLException e) {
             log.info("select all error: {}", e.getSQLState());
@@ -154,7 +156,7 @@ public class WorkBase {
     /**
      * Drop table from data base
      *
-     * @return true if successfully
+     * @return true if successfully drop table
      */
     public static boolean dropTable() {
         try (PreparedStatement preparedStatement = DBWorker.getConnection().prepareStatement(Queries.DROP_TABLE)) {

@@ -13,7 +13,7 @@ public class Main {
         Student student = new Student(1, "TestName", 20, 1, 100);
         WorkBase.createTable();
         WorkBase.insertStudent(student);
-        WorkBase.updateStudent(student, new Student("LOL", 20, 2, 2));
+        WorkBase.updateStudent("TESTNAMEEE", 19, 2, 200, student.getId());
         WorkBase.deleteStudent(student);
         WorkBase.selectAllStudent().forEach((Student i) -> log.info("{}", i));
         WorkBase.dropTable();

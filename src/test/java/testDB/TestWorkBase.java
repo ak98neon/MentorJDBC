@@ -31,13 +31,13 @@ public class TestWorkBase {
     }
 
     @Test
-    public void updateStudent() {
-        assertTrue(WorkBase.updateStudent(student, new Student("name", 20, 20, 29)));
+    public void deleteStudent() {
+        assertTrue(WorkBase.deleteStudent(student));
     }
 
     @Test
-    public void deleteStudent() {
-        assertTrue(WorkBase.deleteStudent(student));
+    public void updateStudent() {
+        assertTrue(WorkBase.updateStudent("newTEST", 19, 2, 30000, student.getId()));
     }
 
     @Before
