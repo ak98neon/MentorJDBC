@@ -16,10 +16,6 @@ public class TestWorkBase {
     @Before
     public void createdTestTableDB() {
         WorkBase.createTable();
-    }
-
-    @Before
-    public void insertTestRecord() {
         WorkBase.insertStudent(student);
     }
 
