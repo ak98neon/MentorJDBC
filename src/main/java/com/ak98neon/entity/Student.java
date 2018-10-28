@@ -1,4 +1,4 @@
-package com.ak98neon.model;
+package com.ak98neon.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

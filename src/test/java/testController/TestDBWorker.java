@@ -1,6 +1,6 @@
 package testController;
 
-import com.ak98neon.controller.DBWorker;
+import com.ak98neon.util.DBWorker;
 import org.junit.Test;
 
 import java.sql.Connection;
