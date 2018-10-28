@@ -18,6 +18,7 @@ public class DBWorker {
 
     /**
      * The method creates a connection if it does not exist.
+     *
      * @return Connection
      * @throws SQLException if connection is null
      */

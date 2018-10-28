@@ -6,11 +6,11 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 public class TestDBWorker {
     @Test
-    public void testConnecton() throws SQLException {
+    public void testConnection() throws SQLException {
         Connection connection = DBWorker.getConnection();
         assertNotNull(connection);
     }
