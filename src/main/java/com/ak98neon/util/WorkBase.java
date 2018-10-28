@@ -87,9 +87,9 @@ public class WorkBase {
      */
     public static boolean deleteStudent(final Student student) {
         try (PreparedStatement statement = DBWorker.getConnection().prepareStatement(Queries.DELETE_STUDENT)) {
-            statement.setString(1, student.getName());
+            statement.setInt(1, student.getId());
             final int resStatement = statement.executeUpdate();
-            if (resStatement > 0) {
+            if (resStatement == 0) {
                 log.info("Record is delete to table");
                 return true;
             }

@@ -18,6 +18,11 @@ public class TestWorkBase {
         WorkBase.createTable();
     }
 
+    @Before
+    public void insertTestRecord() {
+        WorkBase.insertStudent(student);
+    }
+
     @Test
     public void createTable() {
         assertTrue(WorkBase.createTable());
@@ -25,7 +30,6 @@ public class TestWorkBase {
 
     @Test
     public void insertStudent() {
-        WorkBase.createTable();
         final boolean res = WorkBase.insertStudent(student);
         assertTrue(res);
     }
@@ -38,11 +42,6 @@ public class TestWorkBase {
     @Test
     public void updateStudent() {
         assertTrue(WorkBase.updateStudent("newTEST", 19, 2, 30000, student.getId()));
-    }
-
-    @Before
-    public void insertTestRecord() {
-        WorkBase.insertStudent(student);
     }
 
     @Test

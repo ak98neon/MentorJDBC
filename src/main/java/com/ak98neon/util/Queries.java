@@ -17,7 +17,7 @@ class Queries {
     static final String INSERT_STUDENT = "INSERT INTO STUD (NAME, AGE, COURSE, SALARY) VALUES (?, ?, ?, ?);";
     static final String SELECT_STUDENT = "SELECT ID, NAME, AGE, COURSE, SALARY FROM STUD WHERE NAME = ?;";
     static final String UPDATE_STUDENT = "UPDATE STUD SET NAME = ?, AGE = ?, COURSE = ?, SALARY = ? WHERE ID = ?;";
-    static final String DELETE_STUDENT = "DELETE FROM STUD WHERE NAME = ?;";
+    static final String DELETE_STUDENT = "DELETE FROM STUD WHERE ID = ?;";
     static final String SELECT_ALL_STUDENT = "SELECT * FROM STUD;";
     static final String DROP_TABLE = "DROP TABLE STUD";
 }
