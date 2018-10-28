@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestDBWorker {
     @Test
-    public void connection_Query_ConnectionIsActive() throws SQLException {
+    public void connection_GetConnection_Connection() throws SQLException {
         Connection connection = DBWorker.getConnection();
         assertNotNull(connection);
     }
