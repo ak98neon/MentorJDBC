@@ -1,4 +1,4 @@
-package testController;
+package testUtil;
 
 import com.ak98neon.util.DBWorker;
 import org.junit.Test;
