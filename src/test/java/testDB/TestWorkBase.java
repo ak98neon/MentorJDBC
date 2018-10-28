@@ -14,47 +14,47 @@ public class TestWorkBase {
     private static Student student = new Student("test", 20, 1, 20000);
 
     @Before
-    public void createdTestTableDB() {
+    public void InitAndInsertStudent() {
         WorkBase.createTable();
         WorkBase.insertStudent(student);
     }
 
     @Test
-    public void createTable() {
+    public void Create_Query_CreationTable() {
         assertTrue(WorkBase.createTable());
     }
 
     @Test
-    public void insertStudent() {
+    public void Insert_Student_StudentInsertInTable() {
         final boolean res = WorkBase.insertStudent(student);
         assertTrue(res);
     }
 
     @Test
-    public void deleteStudent() {
+    public void Delete_Student_StudentDeleted() {
         assertTrue(WorkBase.deleteStudent(student));
     }
 
     @Test
-    public void updateStudent() {
+    public void Update_Student_StudentUpdate() {
         assertTrue(WorkBase.updateStudent("newTEST", 19, 2, 30000, student.getId()));
     }
 
     @Test
-    public void selectStudent() {
+    public void Select_StudentName_StudentSelectedForName() {
         Student s = WorkBase.selectStudent(student.getName());
         assert s != null;
         assertNotNull(s.getName());
     }
 
     @Test
-    public void selectAllStudent() {
+    public void Select_Query_StudentAllSelected() {
         List<Student> list = WorkBase.selectAllStudent();
         assertTrue(list.size() > 0);
     }
 
     @Test
-    public void dropTable() {
+    public void Drop_Query_TableIsDrop() {
         assertTrue(WorkBase.dropTable());
     }
 }
