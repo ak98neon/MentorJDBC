@@ -8,7 +8,7 @@ class Queries {
     }
 
     static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
-            + "STUD (ID INT NOT NULL AUTO_INCREMENT, "
+            + "STUD (ID INT NOT NULL AUTO_INCREMENT UNIQUE, "
             + "NAME VARCHAR(45) NOT NULL, "
             + "AGE INT, "
             + "COURSE INT, "
