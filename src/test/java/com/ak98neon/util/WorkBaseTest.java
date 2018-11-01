@@ -1,7 +1,6 @@
-package testDB;
+package com.ak98neon.util;
 
 import com.ak98neon.entity.Student;
-import com.ak98neon.util.WorkBase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class TestWorkBase {
+public class WorkBaseTest {
     private static Student student = new Student("test", 20, 1, 20000);
 
     @Before

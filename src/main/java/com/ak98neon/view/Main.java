@@ -1,6 +1,7 @@
 package com.ak98neon.view;
 
 import com.ak98neon.entity.Student;
+import com.ak98neon.util.NumberPercent;
 import com.ak98neon.util.WorkBase;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,5 +18,7 @@ public class Main {
         WorkBase.deleteStudent(student);
         WorkBase.selectAllStudent().forEach((Student i) -> log.info("{}", i));
         WorkBase.dropTable();
+
+        log.info(NumberPercent.calculatePercent(1,3,2) + "%");
     }
 }
