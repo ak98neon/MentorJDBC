@@ -12,7 +12,7 @@ public class NumberPercentTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void calculatePercent_NegativeValueAndTotalAndPlace_Equals() {
+    public void calculatePercent_NegativeValueAndTotalAndPlace_Exception() {
         NumberPercent.calculatePercent(-1, 3, -1);
     }
 
